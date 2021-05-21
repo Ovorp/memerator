@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "./index.css";
-import "./Components/NewMeme";
-import "./Components/UserInput";
-import "./Components/Memes";
-import "./Components/Captions";
+import React, { Component } from 'react';
+import axios from 'axios';
+import './index.css';
+import './Components/NewMeme';
+import './Components/UserInput';
+import './Components/Memes';
+import './Components/Captions';
+import Header from './Components/Header';
 const getRandomNumber = (length) => Math.floor(Math.random() * length);
 const getRandomCaption = (length) => Math.floor(Math.random() * length);
 
@@ -14,15 +15,15 @@ class App extends Component {
     this.state = {
       captions: [],
       memes: [],
-      meme: "",
-      caption: "",
+      meme: '',
+      caption: '',
       newMemes: [],
     };
   }
 
   componentDidMount() {
     axios
-      .get("/api/captions")
+      .get('/api/captions')
       .then((response) => {
         console.log(response.data);
         this.setState({ captions: response.data });
@@ -32,7 +33,7 @@ class App extends Component {
         console.log(error);
       });
     axios
-      .get("/api/memes")
+      .get('/api/memes')
       .then((response) => {
         console.log(response.data);
         this.setState({ memes: response.data });
@@ -55,7 +56,7 @@ class App extends Component {
   };
   saveMeme = () => {
     axios
-      .post("/api/newMemes", {
+      .post('/api/newMemes', {
         meme: this.state.meme,
         caption: this.state.caption,
       })
@@ -71,10 +72,7 @@ class App extends Component {
   render() {
     return (
       <main>
-        <header>
-          <h1>MEMERATOR 2000</h1>
-        </header>
-
+        <Header header="MEMERATOR 200" />
         <section className="middle">
           <img className="pics" src={this.state.meme} alt="meme-pic" />
 
